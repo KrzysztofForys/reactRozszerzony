@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 type Movie = {
     id: number;
+    title: string;
 }
 type State = {
     items: Movie[];
@@ -8,7 +9,7 @@ type State = {
 const watchListSlice = createSlice({
     name: 'watchList',
     initialState: {
-        items: JSON.parse(localStorage.getItem("favorites") || '[]')
+        items: JSON.parse(localStorage.getItem("watchList") || '[]')
     },
     reducers: {
         addToWatchList(state: State, action){
@@ -22,4 +23,4 @@ const watchListSlice = createSlice({
     }
 })
 export const {addToWatchList, removeFromWatchList, clearWatchList} = watchListSlice.actions;
-export default watchListSlice.caseReducers;
+export default watchListSlice.reducer;

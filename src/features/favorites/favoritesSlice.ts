@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit"
 type Movie = {
     id: number;
+    title: string;
 }
 type State = {
     items: Movie[];
@@ -22,4 +23,4 @@ const favoritesSlice = createSlice({
     }
 })
 export const {addFavorite, removeFavorite, clearFavorites} = favoritesSlice.actions;
-export default favoritesSlice.caseReducers;
+export default favoritesSlice.reducer;
