@@ -32,7 +32,3 @@ export const useTheme = () => {
     if(!ctx) throw new Error('useTheme musi być użyty w ThemeProvider');
     return ctx;
 }
-interface A {
-    /** To jest oficjalny opis zmiennej `a`, który zobaczysz w podpowiedziach edytora. */
-    a: number;
-}
