@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setRating } from './ratingsSlice';
 import { useTheme } from '../theme/ThemeContext';
+import { useAppSelector } from '../../shared/hooks/redux';
 
 type StarRatingProps = {
     movieId: number;
@@ -11,7 +12,7 @@ export function StarRating({ movieId } : StarRatingProps) {
   const { state } = useTheme();
   const dark = state.mode === 'dark';
 
-  const currentRating = useSelector(s => s.ratings[movieId] || 0);
+  const currentRating = useAppSelector(s => s.ratings[movieId] || 0);
   const [hovered, setHovered] = useState(0);
 
   return (

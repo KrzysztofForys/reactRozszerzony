@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { useDebounce } from "../shared/hooks/useDebounce";
+import { FavoriteButton } from "../features/favorites/favoriteButton";
+import { StarRating } from "../features/ratings/StarRating";
+import { WatchListButton } from "../features/watchList/watchListButton";
 
 const HomePage = () => {
-    const [query, setQuery] = useState<string>("");
-    const debounced = useDebounce(query, 400);
-    console.log(`Debounced: ${debounced}`);
+    const testMovie = {id: 1, title: 'Inception', poster_path: null}
     return(
-        <input value={query} onChange ={(event => setQuery(event.target.value))} placeholder="Pisz szybko..." className="p-2 zinc-800 text-white rounded"/>
+        <div>
+            <h2 className="text-2xl mb-4">Strona główna</h2>
+            <FavoriteButton movie={testMovie}/>
+            <WatchListButton movie={testMovie}/>
+            <StarRating movieId={testMovie.id}/>
+        </div>
     )
 }
 export default HomePage;

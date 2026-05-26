@@ -1,8 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-type Movie = {
-    id: number;
-    title: string;
-}
+import {type Movie} from "../../shared/types/types"
 type State = {
     items: Movie[];
 }
@@ -17,7 +14,7 @@ const favoritesSlice = createSlice({
             if(!exists) state.items.push(action.payload);
         },
         removeFavorite(state: State, action){
-            state.items = state.items.filter(m => m.id !== action.payload.id)
+            state.items = state.items.filter(m => m.id !== action.payload)
         },
         clearFavorites(state){state.items = [];}
     }

@@ -1,13 +1,18 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch} from "react-redux"
 import { useTheme } from "../theme/ThemeContext";
 import { addFavorite, removeFavorite } from "./favoritesSlice";
+import {type Movie} from "../../shared/types/types"
+import { useAppSelector } from "../../shared/hooks/redux";
 
-export const FavoriteButton = () => {
+type FavoriteButtonProps = {
+    movie: Movie
+}
+export const FavoriteButton = ({movie}: FavoriteButtonProps) => {
     const dispatch = useDispatch();
     const {state} = useTheme();
     const dark = state.mode === 'dark';
 
-    const isFav = useSelector(s => s.favorites.items.some(m => m.id === movie.id));
+    const isFav = useAppSelector(s => s.favorites.items.some((m: Movie) => m.id === movie.id));
 
     return (
     <button

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore} from "@reduxjs/toolkit";
 import favoritesReducer from "../features/favorites/favoritesSlice";
 import watchListReducer from "../features/watchList/watchListSlice";
 import ratingsReducer from "../features/ratings/ratingsSlice";
@@ -16,3 +16,6 @@ store.subscribe(() => {
     localStorage.setItem('watchList', JSON.stringify(state.watchList.items));
     localStorage.setItem('ratings', JSON.stringify(state.ratings));
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch;
