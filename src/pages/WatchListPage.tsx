@@ -1,6 +1,25 @@
-const WatchListPage = () => {
-    return(
-        <h2 className="text-2xl">Do obejrzenia</h2>
-    )
+import { MovieCard } from '../features/movies/MovieCard';
+import { useAppSelector } from '../shared/hooks/redux';
+import { Movie } from '../shared/types/types';
+
+export default function WatchlistPage() {
+  const watchlist = useAppSelector(s => s.watchList.items);
+
+  if (watchlist.length === 0) {
+    return (
+      <div className="text-center py-20 text-zinc-400">
+        <p className="text-5xl mb-4">🔖</p>
+        <p>Lista pusta. Wejdź na stronę filmu i kliknij "+ Do obejrzenia".</p>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-6">Do obejrzenia ({watchlist.length})</h1>
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {watchlist.map((m: Movie) => <MovieCard key={m.id} movie={m} />)}
+      </div>
+    </div>
+  );
 }
-export default WatchListPage;

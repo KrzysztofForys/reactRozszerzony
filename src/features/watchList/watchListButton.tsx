@@ -1,13 +1,12 @@
-import { useDispatch } from "react-redux"
 import { useTheme } from "../theme/ThemeContext";
 import { addToWatchList, removeFromWatchList } from "./watchListSlice";
 import {type Movie} from "../../shared/types/types";
-import { useAppSelector } from "../../shared/hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks/redux";
 type WatchListButtonProps = {
     movie: Movie
 }
 export const WatchListButton = ({movie}: WatchListButtonProps) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const {state} = useTheme();
     const dark = state.mode === "dark";
     const isOnList = useAppSelector(s => s.watchList.items.some((m: Movie) => m.id === movie.id))
