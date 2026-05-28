@@ -18,7 +18,7 @@ export const SearchPage = () => {
   const query = searchParams.get('q') ?? '';
   const debouncedQuery = useDebounce(query, 400);
 
-  const { data, isLoading } = useQuery<SearchResponse, Error>({
+  const { data, isLoading, error } = useQuery<SearchResponse, Error>({
     queryKey: ['movies', 'search', debouncedQuery],
     queryFn: () => moviesApi.search(debouncedQuery, 1),
     enabled: debouncedQuery.length > 1,
@@ -34,6 +34,8 @@ export const SearchPage = () => {
         className="w-full p-3 mb-6 bg-zinc-800 text-white rounded text-lg"
         autoFocus
       />
+
+      {error && <p className="text-red-400 mb-4">Błąd: {error.message}</p>}
 
       {data?.results?.length === 0 && (
         <p className="text-zinc-400">Brak wyników dla "{debouncedQuery}"</p>
